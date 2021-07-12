@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--This is for each individual radio button, for when it clicked-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--    If the shape is checked to true, it will have the following properties-->
+    <item android:state_checked="true" >
+
+<!--        Rectangle with a green color and rounded corners-->
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/colorAccent" />
+
+            <corners android:radius="30dp" />
+
+        </shape>
+
+    </item>
+
+</selector>

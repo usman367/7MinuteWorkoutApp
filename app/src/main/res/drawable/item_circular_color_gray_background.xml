@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--we create this to make the text view circular-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <solid android:color="#C4C4C4" />
+
+</shape>

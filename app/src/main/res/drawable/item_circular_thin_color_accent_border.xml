@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--For the recycle view, changing the color to green when the exercise is over-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <stroke
+        android:width="0.5dp"
+        android:color="@color/colorAccent" />
+
+    <solid android:color="#FFFFFF" />
+
+</shape>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BMIActivity">
+
+<!--    Creating the toolbar at the top-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_bmi_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="#FFFFFF" />
+
+
+    <!--Adding radio selection for METRIC and US Units-->
+<!--    We're setting the background as the custom drawable file we created-->
+<!--    We want to align the radio buttons horizontally-->
+    <RadioGroup
+        android:id="@+id/rgUnits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_bmi_activity"
+        android:layout_margin="10dp"
+        android:background="@drawable/drawable_radio_group_tab_background"
+        android:orientation="horizontal">
+
+<!--        Only one of them can be checked true, this one is initially checked true-->
+<!--        Width is set to 0dp, therefore we need to have a weight of 0.5 to say both the buttons should be as wide as each other-->
+<!--        The background is set to a drawable file we created, it only applies if the button is checked to true-->
+<!--        The text color is also set to a drawable file we created, the color changes depending on if the button is checked or not-->
+<!--        android:button="@null"  Doesn't show a circle on the button which indicates that its a radio button (remove it to check its purpose)-->
+        <RadioButton
+            android:id="@+id/rbMetricUnits"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="0.50"
+            android:background="@drawable/drawable_units_tab_selector"
+            android:checked="true"
+            android:gravity="center"
+            android:text="METRIC UNITS"
+            android:textColor="@drawable/drawable_units_tab_text_color_selector"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:button="@null" />
+
+        <!-- Only one of them can be checked true, this one is initially checked false-->
+        <!-- The background is set to a drawable file we created, it only applies if the button is checked to true-->
+        <!-- The text color is also set to a drawable file we created, the color changes depending on if the button is checked or not-->
+        <!-- android:button="@null"  Doesn't show a circle on the button which indicates that its a radio button (remove it to check its purpose)-->
+        <RadioButton
+            android:id="@+id/rbUsUnits"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="0.50"
+            android:background="@drawable/drawable_units_tab_selector"
+            android:checked="false"
+            android:gravity="center"
+            android:text="US UNITS"
+            android:textColor="@drawable/drawable_units_tab_text_color_selector"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:button="@null" />
+
+    </RadioGroup>
+
+
+    <!--Designing the METRIC UNIT VIEW in BMI calculator feature.-->
+<!--    We want the things to be in a vertical order-->
+    <LinearLayout
+        android:id="@+id/llUnitsView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rgUnits"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <!--        For the Metric units-->
+        <LinearLayout
+            android:id="@+id/llMetricUnitsView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" when you click on the box the outline is becomes green and the text darker-->
+            <!--        For the weight box-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMetricUnitWeight"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--            android:inputType="numberDecimal" You can only enter decimal values-->
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etMetricUnitWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="WEIGHT (in kg)"
+                    android:inputType="numberDecimal"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--        For the height box-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMetricUnitHeight"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etMetricUnitHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="HEIGHT (in cm)"
+                    android:inputType="numberDecimal"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <!--        For the other metrics of pounds and inches (US Units)-->
+        <LinearLayout
+            android:id="@+id/llUsUnitsView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible" >
+
+            <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" when you click on the box the outline is becomes green and the text darker-->
+            <!--        For the weight box-->
+            <!--        visibility is set to gone so it is hidden at the start-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUSUnitWeight"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- android:inputType="numberDecimal" You can only enter decimal values-->
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etUSUnitWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="WEIGHT (in lbs)"
+                    android:inputType="numberDecimal"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--        Putting the height textFields in a linear layout because we want to have the two boxes side-by-side-->
+            <!--        Visibility is set to gone because it should be invisible at the start-->
+            <LinearLayout
+                android:id="@+id/llUSUnitHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <!--        For the height box-->
+                <!--        android:layout_weight="1" because the width is set to 0, so we want the two boxes to take up the same amount of width-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilUSUnitHeightFeet"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etUSUnitHeightFeet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="FEET"
+                        android:inputType="number"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--        For the height box-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilUScUnitHeightInch"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etUSUnitHeightInch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="INCH"
+                        android:inputType="number"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+<!--        For displaying the results-->
+        <LinearLayout
+            android:id="@+id/llDiplayBMIResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/tvYourBMI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="YOUR BMI"
+                android:textAllCaps="true"
+                android:visibility="invisible"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvBMIValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="15.00" />
+
+            <TextView
+                android:id="@+id/tvBMIType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                tools:text="Normal" />
+
+            <TextView
+                android:id="@+id/tvBMIDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                tools:text="Normal" />
+        </LinearLayout>
+
+<!--        Green background color-->
+        <Button
+            android:id="@+id/btnCalculateUnits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="35dp"
+            android:background="@color/colorAccent"
+            android:text="CALCULATE"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</RelativeLayout>
